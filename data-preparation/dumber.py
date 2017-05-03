@@ -22,32 +22,32 @@ with open('input/testcollabs.csv', 'r') as csvfile:
 	for pub in pubs:
 
 		# identify researcher at each end
-		res1 = researcher_id(pub['Given Name 1'], pub['Family Name 1'], pub['Login 1'])
-		res2 = researcher_id(pub['Given Name 2'], pub['Family Name 2'], pub['Login 2'])
+		res1_id = researcher_id(pub['Given Name 1'], pub['Family Name 1'], pub['Login 1'])
+		res2_id = researcher_id(pub['Given Name 2'], pub['Family Name 2'], pub['Login 2'])
 		collab_id = pub['Pub ID']
 
 		# pp.pprint(pub)
 
 		# make sure researcher is in researcher list
-		if res1 not in researchers:
-			researchers[res1] = { 
-				'name': res1, 
+		if res1_id not in researchers:
+			researchers[res1_id] = { 
+				'name': res1_id, 
 				'abbrev': pub['Family Name 1'], 
 				'color': '#ff9900', 
 				'collabs': {} 
 			}
 
-		if res2 not in researchers:
-			researchers[res2] = { 
-				'name': res2, 
+		if res2_id not in researchers:
+			researchers[res2_id] = { 
+				'name': res2_id, 
 				'abbrev': pub['Family Name 2'], 
 				'color': '#ff9900', 
 				'collabs': {} 
 			}
 
 		# add this line's collab to each researcher's collab list
-		researchers[res1]['collabs'][collab_id] = { 'id': collab_id, 'other': res2 }
-		researchers[res2]['collabs'][collab_id] = { 'id': collab_id, 'other': res1 }
+		researchers[res1_id]['collabs'][collab_id] = { 'id': collab_id, 'other': res2_id }
+		researchers[res2_id]['collabs'][collab_id] = { 'id': collab_id, 'other': res1_id }
 
 
 # add the 'co-authored' key to everyone
