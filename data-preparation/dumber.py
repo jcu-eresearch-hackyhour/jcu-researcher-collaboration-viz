@@ -1,6 +1,9 @@
 
 
 import csv
+import pprint
+
+pp = pprint.PrettyPrinter(indent=4)
 
 
 def researcher_id(firstname, lastname="", id=""):
@@ -9,7 +12,7 @@ def researcher_id(firstname, lastname="", id=""):
 
 
 # start a list of researchers
-researchers = []
+researchers = {}
 
 
 # read in each line of the pubs list
@@ -25,7 +28,15 @@ with open('input/testcollabs.csv', 'r') as csvfile:
 		print(res1)
 		print(res2)
 
-#                make sure researcher is in researcher list
+		# make sure researcher is in researcher list
+		if res1 not in researchers:
+			researchers[res1] = { 'id': res1, 'collabs': [] }
+
+		if res2 not in researchers:
+			researchers[res2] = { 'id': res2, 'collabs': [] }
+
+pp.pprint(researchers)
+
 #                add this line's collab to each researcher's collab list
 
 # produce final researcher list
