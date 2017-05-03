@@ -30,20 +30,38 @@ with open('input/testcollabs.csv', 'r') as csvfile:
 
 		# make sure researcher is in researcher list
 		if res1 not in researchers:
-			researchers[res1] = { 'id': res1, 'collabs': {} }
+			researchers[res1] = { 
+				'name': res1, 
+				'abbrev': pub['Family Name 1'], 
+				'color': '#ff9900', 
+				'collabs': {} 
+			}
 
 		if res2 not in researchers:
-			researchers[res2] = { 'id': res2, 'collabs': {} }
+			researchers[res2] = { 
+				'name': res2, 
+				'abbrev': pub['Family Name 2'], 
+				'color': '#ff9900', 
+				'collabs': {} 
+			}
 
 		# add this line's collab to each researcher's collab list
 		researchers[res1]['collabs'][collab_id] = { 'id': collab_id, 'other': res2 }
 		researchers[res2]['collabs'][collab_id] = { 'id': collab_id, 'other': res1 }
 
 
+# add the 'co-authored' key to everyone
+for res_id in researchers:
+	researchers[res_id]['coauthored'] = len(researchers[res_id]['collabs'])
 
 
 pp.pprint(researchers)
 
 
 # produce final researcher list
+with open('dumbnodes.csv', 'w') as outnodes:
+	writer = csv.DictWriter(outnodes, fieldnames=['name', 'abbrev', 'color', 'coauthored'], extrasaction='ignore')
+	writer.writeheader()
+	writer.writerows(researchers.values())
+
 # produce grid of collabs (using same order of researchers as list)
