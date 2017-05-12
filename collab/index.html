@@ -74,7 +74,7 @@ arc = d3.svg.arc()
     .outerRadius(outerRadius);
 
 layout = d3.layout.chord()
-    .padding(.04)
+    .padding(.01) // changed this from .04 and it made the between-researcher gap smaller
     .sortSubgroups(d3.descending)
     .sortChords(d3.ascending);
 
