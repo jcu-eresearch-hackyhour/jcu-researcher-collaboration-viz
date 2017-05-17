@@ -1,23 +1,34 @@
 
-
 import csv
 import pprint
+import random
 
 pp = pprint.PrettyPrinter(indent=4)
 
+def random_hex():
+    r = lambda: random.randint(0,255)
+    return('#%02X%02X%02X' % (r(),r(),r()))
 
+def random_color():
+    rgbl=[255,0,0]
+    random.shuffle(rgbl)
+    return tuple(rgbl)
 # -------------------------------------------------------------------
+
 def researcher_id(firstname, lastname="", id=""):
 	"""turn a researcher's names and id into a single string"""
 	return str(lastname)
 	return "::".join([str(firstname), str(lastname), str(id)])
+
 # -------------------------------------------------------------------
+
 def researcher_record(firstname, lastname, login):
 	return {
-		'id': researcher_id(firstname, lastname, login),
+        'id': researcher_id(firstname, lastname, login),
 		'name': firstname + " " + lastname,
 		'abbrv': firstname[:1] + '. ' + lastname,
-		'color': '#ff9900', # go wild here steve
+		#'color': '#ff9900', # change default value
+        'color': random_hex(), # go wild here
 		'collabs': {}
 	}
 # -------------------------------------------------------------------
@@ -34,7 +45,7 @@ with open('input/collabs.csv', 'r') as csvfile:
 	for pub in pubs:
 
 		counter += 1
-		if counter > 300:
+		if counter > 500:
 			break
 
 		# identify researcher at each end
