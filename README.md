@@ -32,4 +32,23 @@ The D3.js chord viz seems to hit visual limits at < 1000 publications.  Note `if
 
 ## TODO
 
-Get subsections of data for each school or year or something that appears 500 - 1000 rows to then toggle using Drop down select or something better.
+- [x] Get complete dataset that matches structure of sample
+    See: `data-preparation/input/collaboration_post_2011.xlsx`
+
+- [ ] Filter in Excel/splice and map in python based on ORGU, YEAR, login (any other categories?) Then decide which to plot based on which return data under < 500 rows.
+
+- [ ] Setup side by side layout aka Climas style with input selectors based on the output of splicing 
+
+## Notes
+
+### Filtering
+
+* Instead of selecting on name which is what appears on the document - use the Login as is consistent
+
+* Duplicates exist in raw data source so when filtering use a count of 2000 as the mapping might remove double or triple that.
+
+### Data Caveats
+
+* Some input error in the original data, contact us, may be mis assignments.
+
+* Note the data reflects collorations of the primary author while at JCU (affliated with JCU on the paper, e.g. not an external author)
